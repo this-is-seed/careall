@@ -1,0 +1,23 @@
+
+{% extends "retired/base.html "%}
+
+{% block content %}
+	{% for user in users %}
+		<article class="media content-section">
+		  <img src="{{ user.profile.image.url }}" class="rounded-circle article-img">
+		  <div class="media-body">
+		    <div class="article-metadata">
+		      <a class="mr-2" href="#">{{ user.username }}</a>
+		      <small class="text-muted">{{ user.email }}</small>
+		    </div>
+		    <h2>
+		    	{% if user.profile.help %}
+		    		<a class="article-title" href="#">HELP SEARCH <mark> ACTIVE </mark></a>
+            	{% else %}
+            		<a class="article-title" href="#">HELP SEARCH <mark> INACTIVE </mark></a>
+            	{% endif %}</a></h2>
+		    <p class="article-content">{{ user.email }}</p>
+		  </div>
+		</article>
+	{% endfor %}
+{% endblock content %}
