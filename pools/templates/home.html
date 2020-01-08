@@ -1,0 +1,27 @@
+
+{% extends "retired/base.html "%}
+{% load auth_extras %}
+{% load crispy_forms_tags %}
+{% block content %}
+	{% for user in users %}
+		{% if request.user|has_group:"helper" %}
+			{% if user|has_group:"retired" %}
+				{% if user.profile.help %}
+					<article class="media content-section">
+					  <img src="{{ user.profile.image.url }}" class="rounded-circle article-img">
+					  <div class="media-body">
+					    <div class="article-metadata">
+					      <a class="mr-2" href="#">{{ user.username }}</a>
+					      <small class="text-muted">{{ user.email }}</small>
+					    </div>
+						<a class="btn btn-outline-info" href="pools/account.html?retired_id = {{user.id}}">Subscribe Help</a>
+					  </div>
+					</article>
+				{% endif %}
+			{% endif %}
+		{% else %}
+
+		
+		{% endif %}
+	{% endfor %}
+{% endblock content %}
